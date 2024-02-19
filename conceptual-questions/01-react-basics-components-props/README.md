@@ -125,19 +125,127 @@ Key Differences:
 
 ### How do you handle lifecycle methods in class components?
 
-(Your answer)
+Lifecycle methods in class components are special methods that automatically get called during different stages of a component's life in a React application. Here are some of the most commonly used lifecycle methods:
+
+* constructor(props): This is where you initialize state and bind methods. It's called before the component is mounted.
+* componentDidMount(): This method is called once the component has been rendered to the DOM. It's a good place to make network requests or set up subscriptions.
+* componentDidUpdate(prevProps, prevState): This method is called after the component updates. It's a good place to perform operations that need the updated state or props.
+* componentWillUnmount(): This method is called before the component is unmounted and destroyed. It's a good place to clean up any ongoing processes like network requests or timers.
+
+```jsx
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: null };
+  }
+
+  componentDidMount() {
+    fetchData().then(data => this.setState({ data }));
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.data !== this.state.data) {
+      console.log('Data updated!');
+    }
+  }
+
+  componentWillUnmount() {
+    // Clean up any ongoing processes here
+  }
+
+  render() {
+    return <div>{this.state.data}</div>;
+  }
+}
+```
 
 ## Props
 
 ### What are props in React?
 
-(Your answer)
+Props in React are like parameters you pass into a function. They let you give data to a component. For example, if you have a Greeting component and you want it to say "Hello, Alice", you can pass "Alice" as a prop.
+```jsx
+function Greeting(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+// Usage
+<Greeting name="Alice" />
+```
+
+Props, short for properties, are a way of passing data from parent components to child components in React. They are similar to function arguments or HTML attributes. In a React component, props are the input data that are passed to the component. They are read-only, meaning that a component should never modify its own props. This enforces the idea of one-way data flow from top (parent component) to bottom (child component).
+
+Benefits of Using Props:
+* Modularization: Props promote reusability by allowing components to be built independently with specific functionality, receiving necessary data or configuration through props.
+* Maintainability: By keeping data and logic encapsulated within components, using props helps make your code more organized and easier to understand.
+* Flexibility: Props provide a flexible way to customize the behavior of child components based on the data passed from the parent, making your application more adaptable.
+
 
 ### How do you pass props from a parent component to a child component?
 
-(Your answer)
+```jsx
+// Parent component (passing props)
+<MyComponent name="John" age={30} isActive={true} />
+
+// Child component (receiving props)
+function MyComponent({ name, age, isActive }) {
+  return (
+    <div>
+      <h1>Hello, {name}!</h1>
+      <p>Your age is: {age}</p>
+      {isActive && <p>You are currently active.</p>}
+    </div>
+  );
+}
+```
+this example, the MyComponent receives props named name, age, and isActive from its parent component, allowing it to dynamically display personalized information and conditional content.
+
+Remember, props is just an object, so you can pass multiple props by adding more properties to this object
 
 ### Can props be modified within a component? Explain.
 
-(Your answer)
+No, props cannot be modified within a component. In React, props are read-only. This means that a child component cannot change the props it receives from its parent component. This is a key principle in React
+
+* Attempting to Modify Props (Incorrect):
+```jsx
+function MyComponent(props) {
+  // Attempting to modify props directly (incorrect)
+  props.data = "Modified data"; // This won't work!
+
+  return (
+    <div>
+      {/* ... */}
+    </div>
+  );
+}
+```
+* Pass Down New Props:
+To update the data displayed, pass down new props from the parent component:
+```jsx
+// Parent component
+function ParentComponent() {
+  const [data, setData] = useState("Initial data");
+
+  const handleClick = () => {
+    setData("Updated data");
+  };
+
+  return (
+    <MyComponent data={data} onClick={handleClick} />
+  );
+}
+
+// MyComponent receiving updated data
+function MyComponent(props) {
+  return (
+    <div>
+      {/* Display data passed as props */}
+      <p>Data: {props.data}</p>
+    </div>
+  );
+}
+```
+
+
+
 
