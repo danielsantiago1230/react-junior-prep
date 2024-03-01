@@ -1,7 +1,7 @@
 # React Junior Prep
 
 ## Overview
-This repository is part of a week-long project designed to train myself in solving conceptual React problems and coding exercises with a focus on React (using TypeScript). The goal is to solidify my understanding of React's core concepts and practical application.
+This repository is part of a project designed to train myself in solving conceptual React problems and coding exercises with a focus on React (using TypeScript). The goal is to solidify my understanding of React's core concepts and practical application.
 
 ## Preparation Plan
 - Day 1-2: Focus on conceptual questions covering React basics, components, props, state, and lifecycle methods.
