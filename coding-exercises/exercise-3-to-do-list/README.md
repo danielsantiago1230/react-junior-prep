@@ -2,6 +2,10 @@
 
 This is a simple to-do list application implemented using React. It allows users to add tasks, mark them as complete, and filter tasks based on their completion status.
 
+### Before
+
+The code for this application includes comments that explain how it works. You can follow the comments to understand the implementation. The `TodoList` component can be found in the `src/components/TodoList` directory. To see an example of the application, run `npm start`.
+
 ### Implementation
 
 To implement this application, follow these steps:
